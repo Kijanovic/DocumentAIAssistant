@@ -1,0 +1,31 @@
+name = "document-ai-web"
+compatibility_date = "2023-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+GEMINI_API_KEY = ""
+
+[[d1_databases]]
+binding = "DB"
+database_name = "document_ai_db"
+database_id = "document-ai-db"
+
+[site]
+bucket = "./.next/static"
+
+[build]
+command = "npm run build"
+cwd = "."
+watch_dir = "src"
+
+[env.production]
+workers_dev = false
+routes = [
+  { pattern = "document-ai.example.com", custom_domain = true }
+]
+
+[env.development]
+workers_dev = true
+
+[dev]
+port = 3000
